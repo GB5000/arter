@@ -1,19 +1,15 @@
 import * as React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
+import Header from "./Header";
 
-export default class SubmitNewDiscovery extends React.Component {
-    static navigationOptions = ({ navigation }) => {
-        return {
-            header: () => null,
-
-        }
-    }
-
+export default class SpeciesBook extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Header navigation={this.props.navigation} title='Artsbogen'/>
+
                 <Text>Test</Text>
-                <Text>lol</Text>
+
             </View>
         )
     }

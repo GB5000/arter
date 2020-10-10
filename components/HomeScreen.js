@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
+import Header from "./Header";
+
 
 
 
@@ -7,14 +9,18 @@ import { View, StyleSheet, Image, Text } from 'react-native';
 export default class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            header: () => null
+            header: () => null,
+
+
         }
     }
+
 
 
     render() {
         return (
             <View style={styles.container}>
+                <Header navigation={this.props.navigation} title='Fund på Arter'/>
 
                 <Image style={styles.bg} source={require('../assets/fund_v2.png')}></Image>
             </View>

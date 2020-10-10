@@ -9,15 +9,19 @@ import {createBottomTabNavigator} from "react-navigation-tabs";
 import {AntDesign} from "@expo/vector-icons";
 import NewDiscovery from "./components/NewDiscovery";
 import SubmitNewDiscovery from "./components/SubmitNewDiscovery";
+import {createDrawerNavigator} from "react-navigation-drawer";
+import SpeciesBook from "./components/SpeciesBook";
 
 
 
 const Stack = createStackNavigator(
     {
         LoadScreen: { screen: LoadScreen },
-        HomeScreen: { screen: HomeScreen },
+        HomeScreen: { screen: HomeScreen},
         AppHomeScreen: { screen: NewDiscovery},
-        SubmitNewDiscovery: { screen: SubmitNewDiscovery }
+        SubmitNewDiscovery: { screen: SubmitNewDiscovery },
+        SpeciesBook: { screen: SpeciesBook},
+
 
     },
     { initialRouteKey: 'LoadScreen' },
@@ -26,7 +30,7 @@ const Stack = createStackNavigator(
 
 const TabNavigator = createBottomTabNavigator({
         HomeScreen: {
-            screen:Stack,
+            screen: Stack,
             navigationOptions: {
                 tabBarLabel:"Se fund",
                 tabBarIcon: ({ tintColor }) => (
@@ -56,6 +60,19 @@ const TabNavigator = createBottomTabNavigator({
         }
     });
 
+
+
+const Drawer = createDrawerNavigator ({
+    Hjem: {
+        screen: TabNavigator,
+    },
+    Artsbogen: {
+        screen: SpeciesBook,
+    },
+
+});
+
+
 Stack.navigationOptions = ({ navigation }) => {
 
     let tabBarVisible = true;
@@ -72,9 +89,11 @@ Stack.navigationOptions = ({ navigation }) => {
 }
 
 
+
+
 const AppContainer = createAppContainer(TabNavigator);
 
-
+const DrawerContainer = createAppContainer(Drawer);
 
 export default class App extends React.Component {
 
@@ -84,7 +103,11 @@ export default class App extends React.Component {
             <View style={styles.container}>
 
 
-                <AppContainer/>
+                    <DrawerContainer/>
+
+
+
+
 
 
                 <StatusBar style="auto" />
