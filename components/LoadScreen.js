@@ -61,17 +61,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginTop: 20,
 
-
     },
     logo: {
         overflow: 'hidden',
         alignItems: 'center',
         marginTop: 45,
         marginLeft: 25
-
-
-
-
 
     },
     text: {

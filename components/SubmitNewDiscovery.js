@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
+import HomeScreen from "./HomeScreen";
+import {NavigationActions} from "react-navigation";
+
+
+
+
 
 export default class SubmitNewDiscovery extends React.Component {
     static navigationOptions = ({ navigation }) => {
@@ -9,16 +15,81 @@ export default class SubmitNewDiscovery extends React.Component {
         }
     }
 
+    handleOnPress = () => {
+        Alert.alert("Dit fund er nu indsendt!", "Tak for dit bidrag", [
+                {
+                    text: "OK",
+                    onPress: () => this.handleNavigate()
+                },
+            ],
+            {
+                cancelable: false
+            }
+
+
+        );
+    }
+
+    handleNavigate() {
+        this.props.navigation.navigate('HomeScreen')
+        console.log("Fund indsendt")
+
+
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Text>Test</Text>
-                <Text>lol</Text>
+
+                <View style={styles.submitArea}>
+
+
+
+                    <Text style={{color: '#fff', fontSize: 20}}>Artsgruppe:</Text>
+
+                    <TextInput style={styles.textInputStyle}>Øverige dyr</TextInput>
+
+                    <Text style={{color: '#fff', fontSize: 20}}>Navn:</Text>
+
+                    <TextInput style={styles.textInputStyle1} >Vinbjergsnegl</TextInput>
+
+
+                   <View style={styles.imageContainer}>
+
+                       <Image style={styles.submitImage} source={require('../assets/original_v3.png')}></Image>
+
+
+                   </View>
+
+
+                    <TouchableOpacity style={styles.button}>
+                    <Button
+                        title="Indsend fund"
+                        color="black"
+                        onPress={this.handleOnPress}/>
+
+                    </TouchableOpacity>
+
+
+
+
+
+                </View>
+
+
+
+
+
             </View>
         )
     }
 
+
+
 }
+
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -28,5 +99,65 @@ const styles = StyleSheet.create({
         alignItems: 'center'
 
     },
+    submitArea: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#133C1C',
+        height: "90%",
+        width: "80%",
+        justifyContent: 'space-around',
+        color: '#fff',
+        flexWrap: 'wrap',
+        padding: 5,
 
+    },
+    textInputStyle: {
+        height: 60,
+        borderColor: 'black',
+        borderWidth: 1,
+        color: '#fff',
+        fontSize: 20,
+        width: "50%",
+        textAlign: 'center',
+
+
+    },
+    textInputStyle1: {
+        height: 60,
+        borderColor: 'black',
+        borderWidth: 1,
+        color: '#fff',
+        fontSize: 20,
+        width: "50%",
+        textAlign: 'center',
+        marginLeft: 53,
+        marginTop: 25,
+
+
+    },
+    button: {
+        width: "50%",
+        height: 150,
+        marginTop: 50,
+        textAlign: 'center'
+
+
+    },
+    imageContainer: {
+        marginTop: 100,
+        width: "80%",
+        height: 200,
+        borderWidth: 1,
+        borderColor: "black",
+
+
+    },
+    submitImage: {
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'cover'
+
+
+    }
 });

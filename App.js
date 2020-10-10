@@ -24,7 +24,7 @@ const Stack = createStackNavigator(
 
 
     },
-    { initialRouteKey: 'LoadScreen' },
+    { initialRouteKey: 'HomeScreen' },
 
 );
 
@@ -38,7 +38,7 @@ const TabNavigator = createBottomTabNavigator({
                 )
             },
         },
-        AppHomeScreen: {
+        NewDiscovery: {
             screen:NewDiscovery,
             navigationOptions: {
                 tabBarLabel:"Nyt fund",
@@ -70,6 +70,7 @@ const Drawer = createDrawerNavigator ({
         screen: SpeciesBook,
     },
 
+
 });
 
 
@@ -90,8 +91,6 @@ Stack.navigationOptions = ({ navigation }) => {
 
 
 
-
-const AppContainer = createAppContainer(TabNavigator);
 
 const DrawerContainer = createAppContainer(Drawer);
 
