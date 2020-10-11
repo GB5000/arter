@@ -69,7 +69,13 @@ const Drawer = createDrawerNavigator ({
     Artsbogen: {
         screen: SpeciesBook,
     },
-
+},
+{
+    contentOptions: {
+        activeTintColor: '#fff',
+        inactiveTintColor: '#fff',
+    },
+    drawerBackgroundColor: '#133c1c',
 
 });
 
