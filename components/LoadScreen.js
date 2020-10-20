@@ -4,14 +4,14 @@ import HomeScreen from "./HomeScreen";
 
 
 
-
+//Funktion der fjerner den default navigation header i StackNavigator
 export default class LoadScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
             header: () => null
         }
     }
-
+    //Hvis komponenten mounter, starter der en timer således at der navigeres videre til HomeScreen
     componentDidMount() {
         this.timeoutHandle = setTimeout(() => {
 
@@ -20,29 +20,24 @@ export default class LoadScreen extends React.Component {
         }, 3000);
     }
 
+    // //Hvis komponenten ikke mounter, cleares timeren således at det ikke opstår problemer i den videre kørsel
     componentWillUnmount() {
         clearTimeout(this.timeoutHandle);
     }
 
-
     render() {
         return (
-
             <View style={styles.container}>
+
                 <View style={styles.logoContainer}>
                     <Image style={styles.logo}source={require('../assets/Arter-Logo-POS.png')}></Image>
                 </View>
+
                 <Text style={styles.text}>Starter applikation</Text>
+
                 <ActivityIndicator size='large' color='#20232A' style={{marginTop: 50}}/>
-
-
-
             </View>
-
-
-
-            );
-
+        );
     };
 
 }

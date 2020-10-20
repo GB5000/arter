@@ -2,7 +2,10 @@ import React,{Component} from 'react'
 import {Text,View,StyleSheet,TouchableOpacity} from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+
 export default class Header extends Component {
+
+    //funktion der åbner DrawerNavigator
     handleNavigation = () =>{
         this.props.navigation.openDrawer();
     }
@@ -11,6 +14,8 @@ export default class Header extends Component {
         const {title}= this.props
         return(
             <View style={styles.container}>
+
+                //Der indsættes et ikon og via TouchableOpacity og dertilhørende onPress kaldes handleNavigation
                 <TouchableOpacity style={styles.icon} onPress={this.handleNavigation}>
                     <MaterialCommunityIcons name="forwardburger" size={25} color="black" />
                 </TouchableOpacity>

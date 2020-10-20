@@ -13,7 +13,7 @@ import {createDrawerNavigator} from "react-navigation-drawer";
 import SpeciesBook from "./components/SpeciesBook";
 
 
-
+//Her oprettes appens StackNavigator, og de forskellige components sætte som screens
 const Stack = createStackNavigator(
     {
         LoadScreen: { screen: LoadScreen },
@@ -28,11 +28,13 @@ const Stack = createStackNavigator(
 
 );
 
+//Her oprettes appens TabNavigator, hvori HomeScreen sættes som StackNavigator
 const TabNavigator = createBottomTabNavigator({
         HomeScreen: {
             screen: Stack,
             navigationOptions: {
                 tabBarLabel:"Se fund",
+                //Ikon sættes via import
                 tabBarIcon: ({ tintColor }) => (
                     <AntDesign name="enviromento" size={24} color={tintColor} />
                 )
@@ -42,6 +44,7 @@ const TabNavigator = createBottomTabNavigator({
             screen:NewDiscovery,
             navigationOptions: {
                 tabBarLabel:"Nyt fund",
+                //Ikon sættes via import
                 tabBarIcon: ({ tintColor }) => (
                     <AntDesign name="camerao" size={24} color={tintColor} />
                 )
@@ -61,7 +64,7 @@ const TabNavigator = createBottomTabNavigator({
     });
 
 
-
+//Her oprettes appens DrawerNavigator, hvori Hjem sættes som TabNavigator
 const Drawer = createDrawerNavigator ({
     Hjem: {
         screen: TabNavigator,
@@ -79,7 +82,8 @@ const Drawer = createDrawerNavigator ({
 
 });
 
-
+//Der ønskes ikke at TabNavigatoren er synlig på LoadScreen
+//Funktionen sætter tabBarVisible = true på alle screens og hvis det er LoadScreen er den false
 Stack.navigationOptions = ({ navigation }) => {
 
     let tabBarVisible = true;
@@ -97,7 +101,7 @@ Stack.navigationOptions = ({ navigation }) => {
 
 
 
-
+//createAppContainer tager DrawerNavigator som parameter, og DrawerContainer kaldes i render metoden
 const DrawerContainer = createAppContainer(Drawer);
 
 export default class App extends React.Component {
@@ -106,15 +110,7 @@ export default class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-
-
                     <DrawerContainer/>
-
-
-
-
-
-
                 <StatusBar style="auto" />
             </View>
         );

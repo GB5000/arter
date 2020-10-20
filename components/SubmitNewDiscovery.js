@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
 import HomeScreen from "./HomeScreen";
-import {NavigationActions} from "react-navigation";
 
-
-
-
-
+//Funktion der fjerner den default navigation header i StackNavigator
 export default class SubmitNewDiscovery extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
@@ -15,6 +11,8 @@ export default class SubmitNewDiscovery extends React.Component {
         }
     }
 
+    //Funktion der handler på renders TouchableOpacity Button
+    //Ved OnPress åbnes der en Alert Box, hvori handleNavigate aktiveres hvis der klikkes OK
     handleOnPress = () => {
         Alert.alert("Dit fund er nu indsendt!", "Tak for dit bidrag", [
                 {
@@ -25,16 +23,13 @@ export default class SubmitNewDiscovery extends React.Component {
             {
                 cancelable: false
             }
-
-
         );
     }
 
+    //Handler navigationen i Alert Box, der navigeres til HomeScreen
     handleNavigate() {
         this.props.navigation.navigate('HomeScreen')
         console.log("Fund indsendt")
-
-
     }
 
     render() {
@@ -42,8 +37,6 @@ export default class SubmitNewDiscovery extends React.Component {
             <View style={styles.container}>
 
                 <View style={styles.submitArea}>
-
-
 
                     <Text style={{color: '#fff', fontSize: 20}}>Artsgruppe:</Text>
 
@@ -58,7 +51,6 @@ export default class SubmitNewDiscovery extends React.Component {
 
                        <Image style={styles.submitImage} source={require('../assets/original_v3.png')}></Image>
 
-
                    </View>
 
 
@@ -71,25 +63,12 @@ export default class SubmitNewDiscovery extends React.Component {
                     </TouchableOpacity>
 
 
-
-
-
                 </View>
-
-
-
-
 
             </View>
         )
     }
-
-
-
 }
-
-
-
 
 const styles = StyleSheet.create({
     container: {

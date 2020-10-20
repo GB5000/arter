@@ -6,6 +6,7 @@ import SpeciesItem from "./subcomponents/SpeciesItem";
 export default class SpeciesBook extends React.Component {
     render() {
 
+        //Array med hardcoded arter
         const species = [
             "Aborre",
             "Aftenfalk",
@@ -21,13 +22,12 @@ export default class SpeciesBook extends React.Component {
             "Ørnebregne",
         ];
 
+        //Funktion hvori præsentationen af arterne hentes fra SpeciesItem.js samt SpeciesItem sættes
         const renderSpecies = ({item}) => (
             <SpeciesItem SpeciesItem={item}/>
             )
 
-
-
-
+        //Arrayet species vises i en FlatList, hvori funktionen renderSpecies bruges
         return (
             <View style={styles.container}>
                 <Header navigation={this.props.navigation} title='Artsbogen'/>

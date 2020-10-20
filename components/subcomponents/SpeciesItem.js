@@ -1,9 +1,13 @@
 import React,{Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
+//Opsætning af præsentationen af en art i artsbogen
 export default class SpeciesItem extends Component{
     render() {
+
+        //sættes i SpeciesBook.js
         const{SpeciesItem} = this.props
+
         return(
             <View style={styles.container}>
 

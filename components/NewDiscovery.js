@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View, StyleSheet, Text, ImageBackground, TouchableOpacity } from 'react-native';
 
+//Funktion der fjerner den default navigation header i StackNavigator
 export default class NewDiscovery extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
@@ -8,10 +9,10 @@ export default class NewDiscovery extends React.Component {
         }
     }
 
-
+    //Baggrundsbillede bliver sat og på det indsættes en transparent TouchableOpacity
+    //Ved onPress på denne TouchableOpacity navigeres der videre til SubmitNewDiscovery
     render() {
         return (
-
 
             <View style={styles.container}>
 
@@ -19,13 +20,9 @@ export default class NewDiscovery extends React.Component {
                 <ImageBackground style={styles.backgroundImage} source={require('../assets/nyt_fund_v2.png')}>
 
                     <View>
-
                         <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('SubmitNewDiscovery')}></TouchableOpacity >
 
-
                     </View>
-
-
 
                 </ImageBackground>
 
