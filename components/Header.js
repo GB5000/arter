@@ -10,12 +10,13 @@ export default class Header extends Component {
         this.props.navigation.openDrawer();
     }
 
+    //Der indsættes et ikon og via TouchableOpacity og dertilhørende onPress kaldes handleNavigation
     render() {
         const {title}= this.props
         return(
             <View style={styles.container}>
 
-                //Der indsættes et ikon og via TouchableOpacity og dertilhørende onPress kaldes handleNavigation
+
                 <TouchableOpacity style={styles.icon} onPress={this.handleNavigation}>
                     <MaterialCommunityIcons name="forwardburger" size={25} color="black" />
                 </TouchableOpacity>

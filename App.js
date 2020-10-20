@@ -112,6 +112,8 @@ export default class App extends React.Component {
             <View style={styles.container}>
                     <DrawerContainer/>
                 <StatusBar style="auto" />
+
+
             </View>
         );
     }
