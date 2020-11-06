@@ -11,6 +11,11 @@ export default class LoadScreen extends React.Component {
             header: () => null
         }
     }
+
+
+
+
+
     //Hvis komponenten mounter, starter der en timer således at der navigeres videre til HomeScreen
     componentDidMount() {
         this.timeoutHandle = setTimeout(() => {
@@ -47,6 +52,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#F9F1E7',
         padding: 20,
+        height: '100%'
 
     },
     logoContainer: {

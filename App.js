@@ -11,16 +11,18 @@ import NewDiscovery from "./components/NewDiscovery";
 import SubmitNewDiscovery from "./components/SubmitNewDiscovery";
 import {createDrawerNavigator} from "react-navigation-drawer";
 import SpeciesBook from "./components/SpeciesBook";
+import SpeciesBook_v2 from "./components/SpeciesBook_v2";
 
 
-//Her oprettes appens StackNavigator, og de forskellige components sætte som screens
+
+//Her oprettes appens StackNavigator, og de forskellige components sættes som screens
 const Stack = createStackNavigator(
     {
         LoadScreen: { screen: LoadScreen },
         HomeScreen: { screen: HomeScreen},
         AppHomeScreen: { screen: NewDiscovery},
         SubmitNewDiscovery: { screen: SubmitNewDiscovery },
-        SpeciesBook: { screen: SpeciesBook},
+        SpeciesBook: { screen: SpeciesBook_v2},
 
 
     },
@@ -57,9 +59,12 @@ const TabNavigator = createBottomTabNavigator({
             labelStyle: {
                 fontSize: 15,
             },
-            activeTintColor: '#133C1C',
+            activeTintColor: '#d6e9c6',
             inactiveTintColor: 'gray',
-            size:100
+            size:100,
+            style: {
+                backgroundColor: '#143D1D'
+            }
         }
     });
 
@@ -70,7 +75,7 @@ const Drawer = createDrawerNavigator ({
         screen: TabNavigator,
     },
     Artsbogen: {
-        screen: SpeciesBook,
+        screen: SpeciesBook_v2,
     },
 },
 {
@@ -78,7 +83,7 @@ const Drawer = createDrawerNavigator ({
         activeTintColor: '#fff',
         inactiveTintColor: '#fff',
     },
-    drawerBackgroundColor: '#133c1c',
+    drawerBackgroundColor: '#143D1D',
 
 });
 
@@ -97,16 +102,21 @@ Stack.navigationOptions = ({ navigation }) => {
     return {
         tabBarVisible,
     }
+
+
 }
+
+
+
 
 
 
 //createAppContainer tager DrawerNavigator som parameter, og DrawerContainer kaldes i render metoden
 const DrawerContainer = createAppContainer(Drawer);
 
+
+
 export default class App extends React.Component {
-
-
     render() {
         return (
             <View style={styles.container}>
