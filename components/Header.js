@@ -31,9 +31,11 @@ const styles = StyleSheet.create({
     container:{
         display:'flex',
         justifyContent:'space-around',
-        paddingTop:25,
+        paddingTop:15,
         flexDirection:'row',
-        flexWrap:'wrap'
+        flexWrap:'wrap',
+        backgroundColor: '#F9F1E7',
+
     },
     icon:{
         width:'15%',

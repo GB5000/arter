@@ -40,7 +40,7 @@ export default class SubmitNewDiscovery extends React.Component {
 
                     <Text style={{color: '#fff', fontSize: 20}}>Artsgruppe:</Text>
 
-                    <TextInput style={styles.textInputStyle}>Øverige dyr</TextInput>
+                    <TextInput style={styles.textInputStyle}>Øvrige dyr</TextInput>
 
                     <Text style={{color: '#fff', fontSize: 20}}>Navn:</Text>
 

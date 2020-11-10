@@ -6,6 +6,8 @@ import HomeScreen from "./HomeScreen";
 
 //Funktion der fjerner den default navigation header i StackNavigator
 export default class LoadScreen extends React.Component {
+
+
     static navigationOptions = ({ navigation }) => {
         return {
             header: () => null

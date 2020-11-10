@@ -12,6 +12,13 @@ import SubmitNewDiscovery from "./components/SubmitNewDiscovery";
 import {createDrawerNavigator} from "react-navigation-drawer";
 import SpeciesBook from "./components/SpeciesBook";
 import SpeciesBook_v2 from "./components/SpeciesBook_v2";
+import HomeScreen_v2 from "./components/HomeScreen_v2";
+import Discovery_1 from "./components/subcomponents/Discovery_1";
+import NewDiscovery_v2 from "./components/NewDiscovery_v2";
+import Discovery_2 from "./components/subcomponents/Discovery_2";
+import Discovery_3 from "./components/subcomponents/Discovery_3";
+
+
 
 
 
@@ -19,14 +26,19 @@ import SpeciesBook_v2 from "./components/SpeciesBook_v2";
 const Stack = createStackNavigator(
     {
         LoadScreen: { screen: LoadScreen },
-        HomeScreen: { screen: HomeScreen},
-        AppHomeScreen: { screen: NewDiscovery},
+        HomeScreen: { screen: HomeScreen_v2},
+        AppHomeScreen: { screen: NewDiscovery_v2},
         SubmitNewDiscovery: { screen: SubmitNewDiscovery },
         SpeciesBook: { screen: SpeciesBook_v2},
+        Discovery_1: { screen: Discovery_1 },
+        Discovery_2: { screen: Discovery_2 },
+        Discovery_3: { screen: Discovery_3 },
+
+
 
 
     },
-    { initialRouteKey: 'HomeScreen' },
+    { initialRouteKey: 'HomeScreen_v2' },
 
 );
 
@@ -43,7 +55,7 @@ const TabNavigator = createBottomTabNavigator({
             },
         },
         NewDiscovery: {
-            screen:NewDiscovery,
+            screen:NewDiscovery_v2,
             navigationOptions: {
                 tabBarLabel:"Nyt fund",
                 //Ikon sættes via import
