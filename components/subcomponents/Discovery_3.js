@@ -2,11 +2,15 @@ import React,{Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import { WebView } from 'react-native-webview';
 
+//Linket til arten Fiskehejre hentes fra Arter.dk og injectes som javaScript i Discovery
+//Nedenstående elementer fjernes fra siden, så den præsenteres flottere i appen
 let jsCode = ` 
     document.querySelector("#app > app-navbar > nav").style.display = 'none';
     document.querySelector("#app > app-sidebar > div").style.display = 'none';
     `;
 
+//react-native-webview bruges til at arten Fiskehejre fra arter.dk
+//Discovery kaldes længere nede i komponenten
 const Discovery = () => (
 
     <View style={styles.container}>

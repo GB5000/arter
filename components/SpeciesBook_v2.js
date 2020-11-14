@@ -5,6 +5,8 @@ import ContentView from "./subcomponents/ContentView";
 
 
 export default class SpeciesBook extends React.Component {
+    //komponenten viser ContentView fra ./subcomponents/ContentView
+    //i ContentView hentes Artsbogen fra arter.dk
     render() {
 
         return (
@@ -12,8 +14,6 @@ export default class SpeciesBook extends React.Component {
                 <Header navigation={this.props.navigation}/>
 
                 <ContentView/>
-
-
 
             </View>
         )
@@ -28,17 +28,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
 
     },
-    image: {
-        flex: 1,
-        height: null,
-        width: "100%",
-        resizeMode: 'contain'
-
-    },
-    flatlistDesign: {
-        height: 350
-
-    }
-
-
 });

@@ -1,13 +1,13 @@
 import * as React from "react";
-import { View, StyleSheet, Text, ImageBackground, TouchableOpacity, Image, Platform, Button } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import {useEffect, useState} from "react";
 
 
 
 
+//Funktion der fjerner den default navigation header i StackNavigator
 export default class NewDiscovery_v2 extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
@@ -15,6 +15,8 @@ export default class NewDiscovery_v2 extends React.Component {
         }
     }
 
+    //Der bryges Expos image-picker til at åbne telefonens kamera og billedbibliotek
+    //Derudover hentes der ikoner fra expo/vector-icons der illustrerer ovenstående funktioner
     render() {
         return (
 
@@ -33,12 +35,9 @@ export default class NewDiscovery_v2 extends React.Component {
 
                         <View style={styles.button_1}>
 
-
-
                             <MaterialIcons name="camera" size={45} color="#143D1D" style={styles.img}/>
 
                             <Text style={styles.text_1}>Tag billede</Text>
-
 
                         </View>
                     </TouchableOpacity>
@@ -55,23 +54,18 @@ export default class NewDiscovery_v2 extends React.Component {
                         }>
                             <View style={styles.button_1}>
 
-
-
                                 <MaterialCommunityIcons name="camera-image" size={45} color="#143D1D" style={styles.img}/>
 
                                 <Text style={styles.text_2}>Vælg billede</Text>
-
 
                             </View>
                     </TouchableOpacity>
 
                 </View>
 
-
             </View>
         )
     }
-
 
 }
 
