@@ -7,6 +7,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {createBottomTabNavigator} from "react-navigation-tabs";
 import {AntDesign} from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
 import NewDiscovery from "./components/NewDiscovery";
 import SubmitNewDiscovery from "./components/SubmitNewDiscovery";
 import {createDrawerNavigator} from "react-navigation-drawer";
@@ -55,12 +56,12 @@ const TabNavigator = createBottomTabNavigator({
             },
         },
         NewDiscovery: {
-            screen:NewDiscovery_v2,
+            screen:SpeciesBook_v2,
             navigationOptions: {
-                tabBarLabel:"Nyt fund",
+                tabBarLabel:"Artsbogen",
                 //Ikon sættes via import
                 tabBarIcon: ({ tintColor }) => (
-                    <AntDesign name="camerao" size={24} color={tintColor} />
+                    <Feather name="book" size={24} color={tintColor} />
                 )
             },
         }
@@ -86,8 +87,8 @@ const Drawer = createDrawerNavigator ({
     Hjem: {
         screen: TabNavigator,
     },
-    Artsbogen: {
-        screen: SpeciesBook_v2,
+    "Nyt Fund": {
+        screen: NewDiscovery_v2,
     },
 },
 {
@@ -134,7 +135,6 @@ export default class App extends React.Component {
             <View style={styles.container}>
                     <DrawerContainer/>
                 <StatusBar style="auto" />
-
 
             </View>
         );

@@ -23,6 +23,7 @@ export default class HomeScreen extends React.Component {
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#F9F1E7',

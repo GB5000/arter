@@ -7,6 +7,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 
 
+
 //Funktion der fjerner den default navigation header i StackNavigator
 export default class NewDiscovery_v2 extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -19,6 +20,8 @@ export default class NewDiscovery_v2 extends React.Component {
     //Derudover hentes der ikoner fra expo/vector-icons der illustrerer ovenstående funktioner
     render() {
         return (
+
+
 
             <View style={styles.container}>
 
@@ -48,22 +51,24 @@ export default class NewDiscovery_v2 extends React.Component {
                     <TouchableOpacity
                         style={styles.touchableOpacity_button}
                         onPress={() => ImagePicker.launchImageLibraryAsync({
-                                mediaTypes: ImagePicker.MediaTypeOptions.All,
-                                quality: 1,
-                            })
+                            mediaTypes: ImagePicker.MediaTypeOptions.All,
+                            quality: 1,
+                        })
                         }>
-                            <View style={styles.button_1}>
+                        <View style={styles.button_1}>
 
-                                <MaterialCommunityIcons name="camera-image" size={45} color="#143D1D" style={styles.img}/>
+                            <MaterialCommunityIcons name="camera-image" size={45} color="#143D1D" style={styles.img}/>
 
-                                <Text style={styles.text_2}>Vælg billede</Text>
+                            <Text style={styles.text_2}>Vælg billede</Text>
 
-                            </View>
+                        </View>
                     </TouchableOpacity>
 
                 </View>
 
             </View>
+
+
         )
     }
 
@@ -113,13 +118,14 @@ const styles = StyleSheet.create({
     },
     text_1: {
         color: "black",
-        left: 8,
         paddingTop: 20,
+
     },
     text_2: {
         color: "black",
-        left: 5,
         paddingTop: 20,
+
+
     },
     img: {
         overflow: 'hidden',
@@ -129,3 +135,4 @@ const styles = StyleSheet.create({
 
     }
 });
+

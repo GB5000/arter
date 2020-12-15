@@ -15,7 +15,7 @@ import { WebView } from 'react-native-webview';
 
         <View style={styles.container}>
             <WebView
-                source={{ uri: 'https://arter.dk/search/taxon'}}
+                source={{ uri: 'https://arter.dk/search/taxon?take=15&skip=0&notMatched=false&speciesGroup=Fugle&isDkTaxon=true&isDefaultTaxon=true&isMissingPhoto=false&searchText='}}
                 javaScriptEnabled={true}
                 injectedJavaScript={jsCode}
                 originWhitelist={['https://*', 'https://arter.dk*']}

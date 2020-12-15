@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, Text, SafeAreaView, Button, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, Text, SafeAreaView, Button, TouchableOpacity,Alert } from 'react-native';
 import Header from "./Header";
 import Constants from 'expo-constants';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import {Accuracy} from "expo-location";
-import Discovery_1 from "./subcomponents/Discovery_1";
-import Discovery_2 from "./subcomponents/Discovery_2";
-import Discovery_3 from "./subcomponents/Discovery_3";
+
+
 
 
 export default class HomeScreen_v2 extends React.Component {
@@ -18,25 +17,89 @@ export default class HomeScreen_v2 extends React.Component {
         }
     }
 
+
     mapViewRef = React.createRef();
 
+    //states der bruges til at undersøge om tilladelse til brug af placering og
+    //hvad den nuværende placering er
     state = {
         hasLocationPermission: null,
         currentLocation: null,
-        userMarkerCoordinates: [],
-        selectedCoordinate: null,
-        selectedAddress: null,
+        items: [],
     };
 
+    //metode der via expo-permissions spørger tilladelse til brug af placering
     getLocationPermission = async () => {
         const { status } = await Permissions.askAsync(Permissions.LOCATION);
         this.setState({ hasLocationPermission: status });
     };
 
+    //Komponenten (HomeScreen) mounter først efter tilladelsen er givet
     componentDidMount = async () => {
         await this.getLocationPermission();
+        this.fetchData();
+
     };
 
+
+
+    fetchData = async() => {
+        fetch('https://arpo-prod-api-app.azurewebsites.net/records/?searchText=&take=200&zoomLevel=7&mapBounds=3.142074546874998&mapBounds=54.023217176162376&mapBounds=18.105453453124998&mapBounds=57.57709512782503&speciesGroups=Fugle&searchMode=3&includeDescendantTaxons=true&isDeleted=&hasMedia=false&excludeSaughtButNotFound=true&includeSpeciesGroupFacet=true&includeOrphanRecords=false&url=')
+            .then(res => res.json())
+            .then(data => {
+                this.setState({ items: data.items })
+            })
+            .catch(console.error)
+    }
+
+
+    getIconFromType(acceptedVernacularName) {
+        var icon = require("../assets/green-marker-black.png");
+        switch (acceptedVernacularName) {
+            case "Havørn": icon = require("../assets/sea-​​eagle.png");
+                break
+            case "Hjejle": icon = require("../assets/GoldenPlover.png");
+                break
+            case "Ringdue": icon = require("../assets/pigeon.png");
+                break
+            case "Solsort": icon = require("../assets/Blackbird.png");
+                break
+            case "Rødhals, Rødkælk": icon = require("../assets/Erithacus-rubecula.png");
+                break
+            case "Fiskehejre": icon = require("../assets/Ardea-cinerea.png");
+                break
+            case "Musvåge": icon = require("../assets/Buteo-buteo.png");
+                break
+            case "Fasan": icon = require("../assets/Phasianus-colchicus.png");
+                break
+            case "Gærdesmutte": icon = require("../assets/wren.png")
+                break
+            default: icon = require("../assets/green-marker-black.png");
+                break
+
+        }
+        return icon
+    }
+
+
+
+    mapMarkers = () => {
+        return this.state.items.map((item) => <Marker
+            key={item.id}
+            coordinate={{ latitude: item.geoLocation.latitude, longitude: item.geoLocation.longitude }}
+            title={item.acceptedVernacularName}
+            description={item.scientificName}
+        >
+            <Image source={this.getIconFromType(item.acceptedVernacularName)} resizeMode={'contain'} style={{ height: 30, width: 30 }} />
+
+        </Marker >)
+
+
+    }
+
+
+
+    //Metode der kan bruges til at opdatere brugerens placering
     updateLocation = async () => {
         const { coords } = await Location.getCurrentPositionAsync({accuracy: Accuracy.Balanced});
         this.setState({ currentLocation: coords });
@@ -44,47 +107,21 @@ export default class HomeScreen_v2 extends React.Component {
 
     };
 
-    handleLongPress = event => {
-        const { coordinate } = event.nativeEvent;
-        this.setState(prevState => {
-            return {
-                userMarkerCoordinates: [...prevState.userMarkerCoordinates, coordinate],
-            };
-        });
-    };
-
-    handleSelectMarker = coordinate => {
-        this.setState({ selectedCoordinate: coordinate });
-        this.findAddress(coordinate);
-    };
-
-    findAddress = async coordinate => {
-        const [selectedAddress] = await Location.reverseGeocodeAsync(coordinate);
-        this.setState({ selectedAddress });
-    };
-
-    closeInfoBox = () =>
-        this.setState({ selectedCoordinate: null, selectedAddress: null });
-
+    //Metode der render brugens nuværende placering
     renderCurrentLocation = () => {
         const { hasLocationPermission, currentLocation } = this.state;
         if (hasLocationPermission === null) {
             return null;
         }
         if (hasLocationPermission === false) {
-            return <Text>No location access. Go to settings to change</Text>;
+            return <Text>Der er ikke givet tilladelse til brug af enhedens placering</Text>;
         }
 
     };
 
-
-
-
+    //Header renders, MapView med fetched markers vises på kortet
     render() {
         const {
-            userMarkerCoordinates,
-            selectedCoordinate,
-            selectedAddress,
         } = this.state;
         return (
 
@@ -97,7 +134,6 @@ export default class HomeScreen_v2 extends React.Component {
                     style={styles.map}
                     ref={this.mapViewRef}
                     showsUserLocation
-                    onLongPress={this.handleLongPress}
                     initialRegion={{
                         latitude: 55.6518904,
                         longitude: 12.5047675,
@@ -105,61 +141,22 @@ export default class HomeScreen_v2 extends React.Component {
                         longitudeDelta: 0.0421,
                     }}>
 
-
-                    <Marker
-                        coordinate={{ latitude: 55.6381149, longitude: 12.5211022 }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Discovery_1')
-                        }}
-                    >
-
-                    </Marker>
-
-                    <Marker
-                        coordinate={{ latitude: 55.640981, longitude: 12.517502 }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Discovery_2')
-                        }}
-                    >
-
-                    </Marker>
-
-                    <Marker
-                        coordinate={{ latitude: 55.676533, longitude: 12.5301 }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Discovery_3')
-                        }}
-                    >
-
-                    </Marker>
+                    {this.mapMarkers()}
 
 
 
 
-                    {userMarkerCoordinates.map((coordinate, index) => (
-                        <Marker
-                            coordinate={coordinate}
-                            key={index.toString()}
-                            onPress={() => this.handleSelectMarker(coordinate)}
-                        />
-                    ))}
                 </MapView>
-                {selectedCoordinate && (
-                    <View style={styles.infoBox}>
-                        <Text style={styles.infoText}>
-                            {selectedCoordinate.latitude}, {selectedCoordinate.longitude}
-                        </Text>
-                        {selectedAddress && (
-                            <Text style={styles.infoText}>
-                                {selectedAddress.name} {selectedAddress.postalCode}
-                            </Text>
-                        )}
-                        <Button title="close" onPress={this.closeInfoBox} />
-                    </View>
-                )}
+
 
             </SafeAreaView>
+
+
+
+
+
         )
+
     }
 
 
@@ -189,5 +186,3 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
 });
-
-
