@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     text_2: {
         color: "black",
         paddingTop: 20,
-
+        left: 20
 
     },
     img: {

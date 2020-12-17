@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Image, ActivityIndicator, Text } from 'react-native';
-import HomeScreen from "./HomeScreen";
+
 
 
 

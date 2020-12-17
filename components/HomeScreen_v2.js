@@ -57,7 +57,7 @@ export default class HomeScreen_v2 extends React.Component {
     getIconFromType(acceptedVernacularName) {
         var icon = require("../assets/green-marker-black.png");
         switch (acceptedVernacularName) {
-            case "Havørn": icon = require("../assets/sea-​​eagle.png");
+            case "Havørn": icon = require("../assets/sea-eagle.png");
                 break
             case "Hjejle": icon = require("../assets/GoldenPlover.png");
                 break
