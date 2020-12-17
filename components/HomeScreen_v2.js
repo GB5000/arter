@@ -21,7 +21,8 @@ export default class HomeScreen_v2 extends React.Component {
     mapViewRef = React.createRef();
 
     //states der bruges til at undersøge om tilladelse til brug af placering og
-    //hvad den nuværende placering er
+    //hvad den nuværende placering er, samt
+    //oprettes et tomt array som skal bruges i forbindelse med API'en
     state = {
         hasLocationPermission: null,
         currentLocation: null,
@@ -42,7 +43,7 @@ export default class HomeScreen_v2 extends React.Component {
     };
 
 
-
+    //metode der henter data fra endpoint på Arter.dk og sætter den ind arrayet items
     fetchData = async() => {
         fetch('https://arpo-prod-api-app.azurewebsites.net/records/?searchText=&take=200&zoomLevel=7&mapBounds=3.142074546874998&mapBounds=54.023217176162376&mapBounds=18.105453453124998&mapBounds=57.57709512782503&speciesGroups=Fugle&searchMode=3&includeDescendantTaxons=true&isDeleted=&hasMedia=false&excludeSaughtButNotFound=true&includeSpeciesGroupFacet=true&includeOrphanRecords=false&url=')
             .then(res => res.json())
@@ -52,7 +53,7 @@ export default class HomeScreen_v2 extends React.Component {
             .catch(console.error)
     }
 
-
+    //metode der sætter markørerne på kortet efter typen af fugl
     getIconFromType(acceptedVernacularName) {
         var icon = require("../assets/green-marker-black.png");
         switch (acceptedVernacularName) {
@@ -72,7 +73,7 @@ export default class HomeScreen_v2 extends React.Component {
                 break
             case "Fasan": icon = require("../assets/Phasianus-colchicus.png");
                 break
-            case "Gærdesmutte": icon = require("../assets/wren.png")
+            case "Gærdesmutte": icon = require("../assets/wren.png");
                 break
             default: icon = require("../assets/green-marker-black.png");
                 break
@@ -82,7 +83,8 @@ export default class HomeScreen_v2 extends React.Component {
     }
 
 
-
+    //metode der kaldes i MapView, der sætter markørerne via den hentede data fra endpointet, og
+    //det gøres via hver observations unikke id samt deres latitude og longitude
     mapMarkers = () => {
         return this.state.items.map((item) => <Marker
             key={item.id}
